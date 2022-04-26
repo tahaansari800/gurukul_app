@@ -146,8 +146,13 @@ class OtpScrn extends StatelessWidget {
             const Spacer(),
             CustomButton(
                 ontap: () {
-                  showCustomAlertBox(context);
-                  // Navigator.pushNamed(context, HomeScrn.routName);
+                  // showCustomAlertBox(
+                  //   context: context,
+                  //     body:
+                  //         'Gentle reminder that you fee for this month is due. Kindly clear it to continue with the classes.',
+                  //     title: 'Reminder');
+                  
+                  Navigator.pushNamed(context, HomeScrn.routName);
                 },
                 text: 'Continue',
                 textColor: white,

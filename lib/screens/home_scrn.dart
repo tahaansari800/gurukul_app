@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:grukul_schedular_app/constant.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'componant/drawer.dart';
 
 class HomeScrn extends StatelessWidget {
   static String routName = '/home_screen';
@@ -8,23 +10,7 @@ class HomeScrn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-                decoration: const BoxDecoration(color: orange),
-                child: Column(
-                  children: const [],
-                )),
-            const ListTile(
-              title: Text('item 1'),
-            ),
-            const ListTile(
-              title: Text('item 2'),
-            ),
-          ],
-        ),
-      ),
+      drawer: const CustomDrawer(),
       appBar: AppBar(
         title: const Text(
           'black',
@@ -33,10 +19,13 @@ class HomeScrn extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children:  [
+          SizedBox(
+            child: SvgPicture.asset('assets/images/fi-rr-money.svg')),
           Center(child: Text('homeScreen')),
         ],
       ),
     );
   }
 }
+
