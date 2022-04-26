@@ -43,7 +43,7 @@ class CustomDrawer extends StatelessWidget {
                       'Taha Ansari',
                       style: headline2(color: white),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 5,
                     ),
                     Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grukul_schedular_app/routes.dart';
+import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
 import 'package:grukul_schedular_app/screens/get_started.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
 
@@ -36,6 +37,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w800)),
         ),
         routes: routes,
-        home: const HomeScrn());
+        home: const BottomNavigation());
   }
 }
