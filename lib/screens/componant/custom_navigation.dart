@@ -3,10 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grukul_schedular_app/constant.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
 import 'package:grukul_schedular_app/screens/myprofile/profile_scrn.dart';
+import 'package:grukul_schedular_app/screens/notice_board_scrn.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
   static String routName = '/custom_navigation';
-  const CustomBottomNavigation({Key? key}) : super(key: key);
+  const CustomBottomNavigation({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CustomBottomNavigation> createState() => _CustomBottomNavigationState();
@@ -14,10 +17,15 @@ class CustomBottomNavigation extends StatefulWidget {
 
 class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   int _selectedIndex = 0;
+
+  ///change color of floating actionbutton
+  ///if true it will white else orange color
+  bool floatingBtnColor = false;
+
   List<Widget> screens = [
     const HomeScrn(),
     const HomeScrn(),
-    const HomeScrn(),
+    const NoticeBoardScrn(),
     const ProfileScrn(),
   ];
   @override
@@ -27,11 +35,11 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
         height: 45,
         width: 45,
         child: FloatingActionButton(
-          backgroundColor: orange,
+          backgroundColor: floatingBtnColor == false ? orange : white,
           onPressed: () {},
-          child: const Icon(
+          child: Icon(
             Icons.add,
-            color: white,
+            color: floatingBtnColor == false ? white : orange,
             size: 30,
           ),
         ),
@@ -47,6 +55,8 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             IconBottomBar(
               selected: _selectedIndex == 0,
               onPressed: () {
+                floatingBtnColor = false;
+
                 setState(() {
                   _selectedIndex = 0;
                 });
@@ -57,6 +67,8 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             IconBottomBar(
               selected: _selectedIndex == 1,
               onPressed: () {
+                floatingBtnColor = true;
+
                 setState(() {
                   _selectedIndex = 1;
                 });
@@ -67,6 +79,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             IconBottomBar(
               selected: _selectedIndex == 2,
               onPressed: () {
+                floatingBtnColor = true;
                 setState(() {
                   _selectedIndex = 2;
                 });
@@ -77,6 +90,8 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             IconBottomBar(
               selected: _selectedIndex == 3,
               onPressed: () {
+                floatingBtnColor = false;
+
                 setState(() {
                   _selectedIndex = 3;
                 });

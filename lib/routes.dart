@@ -3,6 +3,7 @@ import 'package:grukul_schedular_app/screens/classes_mode.dart';
 import 'package:grukul_schedular_app/screens/details_scrn.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
 import 'package:grukul_schedular_app/screens/myprofile/profile_edit_scrn.dart';
+import 'package:grukul_schedular_app/screens/notice_board_scrn.dart';
 import 'package:grukul_schedular_app/screens/otp_scrn.dart';
 import 'package:grukul_schedular_app/screens/pasions_scrn.dart';
 import 'package:grukul_schedular_app/screens/signin_scrn.dart';
@@ -24,4 +25,5 @@ final Map<String, WidgetBuilder> routes = {
   Classedmode.routName: (context) => const Classedmode(),
   CustomBottomNavigation.routName: (context) => const CustomBottomNavigation(),
   EditProfile.routName: (context) => const EditProfile(),
+  NoticeBoardScrn.routName: (context) => const NoticeBoardScrn(),
 };
