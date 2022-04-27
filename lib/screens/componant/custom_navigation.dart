@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grukul_schedular_app/constant.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
-import 'package:grukul_schedular_app/screens/signin_scrn.dart';
+import 'package:grukul_schedular_app/screens/myprofile/profile_scrn.dart';
 
-class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({Key? key}) : super(key: key);
+class CustomBottomNavigation extends StatefulWidget {
+  static String routName = '/custom_navigation';
+  const CustomBottomNavigation({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
+  State<CustomBottomNavigation> createState() => _CustomBottomNavigationState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation> {
+class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   int _selectedIndex = 0;
   List<Widget> screens = [
     const HomeScrn(),
     const HomeScrn(),
     const HomeScrn(),
-    const SignInScrn(),
+    const ProfileScrn(),
   ];
   @override
   Widget build(BuildContext context) {

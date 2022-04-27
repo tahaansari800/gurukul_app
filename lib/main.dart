@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grukul_schedular_app/routes.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
-import 'package:grukul_schedular_app/screens/get_started.dart';
-import 'package:grukul_schedular_app/screens/home_scrn.dart';
-
-import 'constant.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +10,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,13 +17,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
               iconTheme: IconThemeData(color: Colors.black),
-              toolbarHeight: 40,
+              toolbarHeight: 38,
               systemOverlayStyle: SystemUiOverlayStyle(
-                // statusBarBrightness: Brightness.dark,
+                statusBarIconBrightness: Brightness.dark,
                 statusBarColor: Colors.white,
               ),
               // toolbarHeight: 44,
-              centerTitle: true,
               elevation: 0,
               backgroundColor: Colors.white,
               toolbarTextStyle: TextStyle(
@@ -37,6 +31,6 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w800)),
         ),
         routes: routes,
-        home: const BottomNavigation());
+        home: const CustomBottomNavigation());
   }
 }

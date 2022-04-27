@@ -173,6 +173,7 @@ class _DetailsScrnState extends State<DetailsScrn> {
                       },
                     ),
                   ),
+                 
                   const SizedBox(
                     height: 20,
                   ),
