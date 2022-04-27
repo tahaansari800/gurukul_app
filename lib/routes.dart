@@ -10,6 +10,7 @@ import 'package:grukul_schedular_app/screens/signin_scrn.dart';
 import 'package:grukul_schedular_app/screens/singup_scrn.dart';
 import 'package:grukul_schedular_app/screens/splash_scrn.dart';
 import 'package:grukul_schedular_app/screens/welcome_scrn.dart';
+import 'package:grukul_schedular_app/screens/your_schedule_scrn.dart';
 
 import 'screens/componant/custom_navigation.dart';
 
@@ -26,4 +27,5 @@ final Map<String, WidgetBuilder> routes = {
   CustomBottomNavigation.routName: (context) => const CustomBottomNavigation(),
   EditProfile.routName: (context) => const EditProfile(),
   NoticeBoardScrn.routName: (context) => const NoticeBoardScrn(),
+  YourScheduleScrn.routName: (context) => const YourScheduleScrn(),
 };

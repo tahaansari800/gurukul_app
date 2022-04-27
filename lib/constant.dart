@@ -32,6 +32,11 @@ TextStyle bodyText2({required Color color}) {
   return GoogleFonts.lato(
       fontSize: 14, color: color, fontWeight: FontWeight.w500);
 }
+///font size 12 and weight 500
+TextStyle bodyText3({required Color color}) {
+  return GoogleFonts.lato(
+      fontSize: 12, color: color, fontWeight: FontWeight.w500);
+}
 
 ///font size 20 and weight 700
 TextStyle headline1({required Color color}) {

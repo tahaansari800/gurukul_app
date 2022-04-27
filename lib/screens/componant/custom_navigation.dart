@@ -4,6 +4,7 @@ import 'package:grukul_schedular_app/constant.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
 import 'package:grukul_schedular_app/screens/myprofile/profile_scrn.dart';
 import 'package:grukul_schedular_app/screens/notice_board_scrn.dart';
+import 'package:grukul_schedular_app/screens/your_schedule_scrn.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
   static String routName = '/custom_navigation';
@@ -24,7 +25,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
 
   List<Widget> screens = [
     const HomeScrn(),
-    const HomeScrn(),
+    const YourScheduleScrn(),
     const NoticeBoardScrn(),
     const ProfileScrn(),
   ];
