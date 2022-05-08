@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grukul_schedular_app/routes.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
+import 'package:grukul_schedular_app/screens/pasions_scrn.dart';
+import 'package:grukul_schedular_app/screens/signin_scrn.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +33,9 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w800)),
         ),
         routes: routes,
-        home: const CustomBottomNavigation());
+        // home:  SignInScrn(),
+        home: const CustomBottomNavigation()
+        // home: const PasionScrn(),
+        );
   }
 }

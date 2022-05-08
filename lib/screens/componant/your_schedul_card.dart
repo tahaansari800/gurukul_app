@@ -1,10 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
+import 'package:grukul_schedular_app/screens/scheduleClasses/schedule_class_mode_scrn.dart';
 
 import '../../constant.dart';
 import 'custom_button.dart';
 
 ///custom schdule card
-class YourScheduleCard extends StatelessWidget {
+class YourScheduleCard extends StatefulWidget {
   const YourScheduleCard({
     Key? key,
     required this.title,
@@ -21,6 +25,13 @@ class YourScheduleCard extends StatelessWidget {
   final String statusBtn;
 
   @override
+  State<YourScheduleCard> createState() => _YourScheduleCardState();
+}
+
+class _YourScheduleCardState extends State<YourScheduleCard> {
+  Object? isClass;
+  final List<String> isClassList = ['Reshedule Class', 'Cancel Class'];
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
@@ -28,7 +39,7 @@ class YourScheduleCard extends StatelessWidget {
       height: scHeight(context) / 5,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
         color: orange,
       ),
       child: Column(
@@ -40,30 +51,50 @@ class YourScheduleCard extends StatelessWidget {
             children: [
               //title text
               Text(
-                title,
+                widget.title,
                 style: headline2(color: white),
               ),
-              IconButton(
-                onPressed: () {
-                  alertButton(context);
-                },
+              //popup menu
+              PopupMenuButton(
                 icon: const Icon(
                   Icons.more_vert,
                   color: white,
                 ),
-              )
+                onSelected: (value) {
+                  if (value == 0) {
+                    Navigator.pushNamed(
+                        context, ScheduleClassModeScrn.routName);
+
+                    log('reshedul classes');
+                  } else if (value == 1) {
+                    log('cancel classes');
+                  }
+                },
+                itemBuilder: (context) {
+                  return [
+                    const PopupMenuItem<int>(
+                      value: 0,
+                      child: Text("Reshedule Classes"),
+                    ),
+                    const PopupMenuItem<int>(
+                      value: 1,
+                      child: Text("Cancel Classes"),
+                    ),
+                  ];
+                },
+              ),
             ],
           ),
 
           //times
           Text(
-            time,
+            widget.time,
             style: bodyText1(color: white),
           ),
 
           //dates
           Text(
-            date,
+            widget.date,
             style: bodyText2(color: white),
           ),
 
@@ -73,7 +104,7 @@ class YourScheduleCard extends StatelessWidget {
               SizedBox(
                 //status in text
                 child: Text(
-                  statusText,
+                  widget.statusText,
                   style: bodyText1(color: white),
                 ),
               ),
@@ -84,7 +115,7 @@ class YourScheduleCard extends StatelessWidget {
               Expanded(
                 child: CustomButton(
                     ontap: () {},
-                    text: statusBtn,
+                    text: widget.statusBtn,
                     textColor: orange,
                     btnColor: white),
               ),
@@ -93,31 +124,5 @@ class YourScheduleCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  alertButton(context) {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return Dialog(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  onTap: () {},
-                  title: const Text('Reshedule Class'),
-                ),
-                const Divider(
-                  thickness: 1,
-                  color: orange,
-                ),
-                ListTile(
-                  onTap: () {},
-                  title: const Text('Cancel Class'),
-                ),
-              ],
-            ),
-          );
-        });
   }
 }

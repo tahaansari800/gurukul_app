@@ -1,53 +1,56 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_appbar.dart';
-import 'package:grukul_schedular_app/screens/componant/custom_button.dart';
-import 'package:grukul_schedular_app/screens/otp_scrn.dart';
+import 'package:grukul_schedular_app/screens/scheduleClasses/schedule_scrn.dart';
 
-import '../constant.dart';
+import '../../constant.dart';
 
-class Classedmode extends StatefulWidget {
-  static String routName = '/classedMode';
-  const Classedmode({Key? key}) : super(key: key);
+class ScheduleClassModeScrn extends StatefulWidget {
+  static String routName = '/schedule_mode_screen';
+  const ScheduleClassModeScrn({Key? key}) : super(key: key);
 
   @override
-  State<Classedmode> createState() => _ClassedmodeState();
+  State<ScheduleClassModeScrn> createState() => _ScheduleClassModeScrnState();
 }
 
-class _ClassedmodeState extends State<Classedmode> {
+class _ScheduleClassModeScrnState extends State<ScheduleClassModeScrn> {
   String selected = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
         appBar: AppBar(),
-        title: '',
         ontap: () {
           Navigator.pop(context);
         },
+        title: 'Schedule Your Classes',
       ),
-      body: 
-      Padding(
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
+            const SizedBox(
+              height: 40,
+            ),
             Text(
-              'Where would you like you classes \nto take place?',
+              'How would you like you classes?',
               textAlign: TextAlign.center,
               style: headline1(color: textColor),
             ),
-            const Spacer(
-              flex: 1,
-            ),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
                   onTap: () {
                     setState(() {
-                      selected = 'Online';
+                      selected = 'individualClasses';
                       log(selected.toString());
+                      // if (selected == 'individualClasses') {
+                      // }
+                      Navigator.pushNamed(context, ScheduleSrn.routName);
                     });
                   },
                   child: Container(
@@ -60,7 +63,7 @@ class _ClassedmodeState extends State<Classedmode> {
                               blurRadius: 15,
                               offset: const Offset(0, 0))
                         ],
-                        color: selected == 'Online' ? orange : white,
+                        color: selected == 'individualClasses' ? orange : white,
                         borderRadius: BorderRadius.circular(50)),
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
@@ -69,16 +72,20 @@ class _ClassedmodeState extends State<Classedmode> {
                       children: [
                         //circle avatar
                         CircleAvatar(
-                          backgroundColor: white,
+                          // backgroundColor: white,
                           radius: 42,
-                          child: Image.asset('assets/images/offline.png'),
+                          child: SvgPicture.asset(
+                              'assets/images/indivisual_class.svg'),
                         ),
                         const Spacer(),
                         //text
                         Text(
-                          'Online',
+                          'Individual \nClasses',
+                          textAlign: TextAlign.center,
                           style: bodyText1(
-                            color: selected == 'Online' ? white : Colors.black,
+                            color: selected == 'individualClasses'
+                                ? white
+                                : Colors.black,
                           ),
                         ),
                         const Spacer()
@@ -89,8 +96,11 @@ class _ClassedmodeState extends State<Classedmode> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      selected = 'Offline';
+                      selected = 'groupClasses';
                       log(selected.toString());
+                      // if (selected == 'groupClasses') {
+                      // }
+                      Navigator.pushNamed(context, ScheduleSrn.routName);
                     });
                   },
                   child: Container(
@@ -103,7 +113,7 @@ class _ClassedmodeState extends State<Classedmode> {
                               blurRadius: 15,
                               offset: const Offset(0, 0))
                         ],
-                        color: selected == 'Offline' ? orange : white,
+                        color: selected == 'groupClasses' ? orange : white,
                         borderRadius: BorderRadius.circular(50)),
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
@@ -113,15 +123,20 @@ class _ClassedmodeState extends State<Classedmode> {
                         //circle avatar
                         CircleAvatar(
                           radius: 42,
-                          backgroundColor: const Color(0xFFFFFFEB),
-                          child: Image.asset('assets/images/online.png'),
+                          // backgroundColor: const Color(0xFFFFFFEB),
+                          backgroundColor: white,
+                          child: SvgPicture.asset(
+                              'assets/images/group_classes.svg'),
                         ),
                         const Spacer(),
                         //text
                         Text(
-                          'Offline',
+                          'Group \nClasses',
+                          textAlign: TextAlign.center,
                           style: bodyText1(
-                            color: selected == 'Offline' ? white : Colors.black,
+                            color: selected == 'groupClasses'
+                                ? white
+                                : Colors.black,
                           ),
                         ),
                         const Spacer()
@@ -131,18 +146,9 @@ class _ClassedmodeState extends State<Classedmode> {
                 ),
               ],
             ),
-            //button
             const Spacer(
               flex: 2,
             ),
-            CustomButton(
-                ontap: () {
-                  Navigator.pushNamed(context, OtpScrn.routName);
-                },
-                text: 'Send OTP',
-                textColor: white,
-                btnColor: orange),
-            const Spacer(),
           ],
         ),
       ),

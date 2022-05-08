@@ -6,7 +6,9 @@ import '../constant.dart';
 
 class SignInScrn extends StatelessWidget {
   static String routName = '/sign_in';
-  const SignInScrn({Key? key}) : super(key: key);
+  SignInScrn({Key? key}) : super(key: key);
+
+  TextEditingController mobileNoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class SignInScrn extends StatelessWidget {
                 height: 40,
               ),
               TextFormField(
+                controller: mobileNoController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 20),
@@ -45,13 +48,18 @@ class SignInScrn extends StatelessWidget {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
               ),
-             
+
               const SizedBox(
                 height: 40,
               ),
               CustomButton(
                   ontap: () {
-                    Navigator.pushNamed(context, OtpScrn.routName);
+                    // Navigator.pushNamed(context, OtpScrn.routName);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                OtpScrn(mobileNo: mobileNoController.text)));
                   },
                   text: 'Send OTP',
                   textColor: white,
@@ -85,7 +93,7 @@ class SignInScrn extends StatelessWidget {
                       icon: Image.asset('assets/icons/facebook_icon.png')),
                 ],
               ),
-              
+
               const SizedBox(
                 height: 20,
               ),

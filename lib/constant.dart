@@ -21,6 +21,7 @@ TextStyle bodyText1({required Color color}) {
   return GoogleFonts.lato(
       fontSize: 16, color: color, fontWeight: FontWeight.w500);
 }
+
 ///font size 16 and weight 700
 TextStyle bodyText1Bold({required Color color}) {
   return GoogleFonts.lato(
@@ -32,6 +33,7 @@ TextStyle bodyText2({required Color color}) {
   return GoogleFonts.lato(
       fontSize: 14, color: color, fontWeight: FontWeight.w500);
 }
+
 ///font size 12 and weight 500
 TextStyle bodyText3({required Color color}) {
   return GoogleFonts.lato(
@@ -43,6 +45,8 @@ TextStyle headline1({required Color color}) {
   return GoogleFonts.lato(
       fontSize: 20, color: color, fontWeight: FontWeight.w700);
 }
+
+///font size 18 and weight 700
 TextStyle headline2({required Color color}) {
   return GoogleFonts.lato(
       fontSize: 18, color: color, fontWeight: FontWeight.w700);
@@ -52,6 +56,9 @@ TextStyle headline2({required Color color}) {
 showCustomAlertBox(
     {required BuildContext context,
     required String title,
+
+    ///islogout true to show yes button
+    bool islogOut = false,
     required String body}) {
   return showDialog(
       context: context,
@@ -85,6 +92,8 @@ showCustomAlertBox(
                         ))
                   ]),
             ),
+
+            //show description text
             Container(
               padding: const EdgeInsets.all(15),
               decoration: const BoxDecoration(
@@ -94,10 +103,28 @@ showCustomAlertBox(
                       bottomRight: Radius.circular(10))),
               // height: 40,
               width: double.infinity,
-              child: Text(
-                '$body \n',
-                // 'Gentle reminder that you fee for this month is due. Kindly clear it to continue with the classes.',
-                style: bodyText1(color: textColor),
+              child: Column(
+                children: [
+                  Text(
+                    '$body \n',
+                    // 'Gentle reminder that you fee for this month is due. Kindly clear it to continue with the classes.',
+                    style: bodyText1(color: textColor),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  islogOut == true
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: orange),
+                          onPressed: () {
+                            //logout function
+                          },
+                          child: Text(
+                            'Yes',
+                            style: bodyText2(color: white),
+                          ))
+                      : const SizedBox(),
+                ],
               ),
             ),
           ]),
@@ -105,4 +132,15 @@ showCustomAlertBox(
       });
 }
 
+///custom progress indicator
+Widget cutsomProgressindicator() {
+  return Center(
+    child: CircularProgressIndicator(
+      backgroundColor: Colors.grey.withOpacity(0.2),
+      color: orange,
+    ),
+  );
+}
+
+///gender list
 final List<String> genderList = ['Male', 'Female', 'Others'];

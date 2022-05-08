@@ -1,15 +1,56 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grukul_schedular_app/constant.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_button.dart';
+import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
-import 'package:grukul_schedular_app/screens/pasions_scrn.dart';
 
 import 'componant/custom_appbar.dart';
 
-class OtpScrn extends StatelessWidget {
+class OtpScrn extends StatefulWidget {
   static String routName = '/otp_screen';
-  const OtpScrn({Key? key}) : super(key: key);
+  const OtpScrn({Key? key, required this.mobileNo}) : super(key: key);
+  final String mobileNo;
+
+  @override
+  State<OtpScrn> createState() => _OtpScrnState();
+}
+
+class _OtpScrnState extends State<OtpScrn> {
+  int secondsRemaining = 30;
+  bool enableResend = false;
+  Timer? timer;
+
+  void resendCode() {
+    setState(() {
+      secondsRemaining = 30;
+      enableResend = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (secondsRemaining != 0) {
+        setState(() {
+          secondsRemaining--;
+        });
+      } else {
+        setState(() {
+          enableResend = true;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    timer!.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +71,11 @@ class OtpScrn extends StatelessWidget {
             const SizedBox(
               height: 60,
             ),
-            const Center(
+            Center(
               child: Text(
-                'Enter 4-digit code sent to you at \n7028988148',
+                'Enter 4-digit code sent to you at \n${widget.mobileNo}',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: textColor),
+                style: const TextStyle(color: textColor),
               ),
             ),
             const SizedBox(
@@ -135,11 +176,16 @@ class OtpScrn extends StatelessWidget {
               )),
               WidgetSpan(
                 child: InkWell(
-                  onTap: () {},
-                  child: const Text(
-                    'Resend OTP',
-                    style: TextStyle(color: orange),
-                  ),
+                  onTap: enableResend ? resendCode : () {},
+                  child: enableResend == true
+                      ? const Text(
+                          'Resend OTP',
+                          style: TextStyle(color: orange),
+                        )
+                      : Text(
+                          '$secondsRemaining',
+                          style: const TextStyle(color: orange),
+                        ),
                 ),
               )
             ])),
@@ -151,8 +197,8 @@ class OtpScrn extends StatelessWidget {
                   //     body:
                   //         'Gentle reminder that you fee for this month is due. Kindly clear it to continue with the classes.',
                   //     title: 'Reminder');
-                  
-                  Navigator.pushNamed(context, HomeScrn.routName);
+
+                  Navigator.pushNamed(context, CustomBottomNavigation.routName);
                 },
                 text: 'Continue',
                 textColor: white,

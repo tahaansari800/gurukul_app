@@ -1,33 +1,32 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:grukul_schedular_app/constant.dart';
+import 'package:grukul_schedular_app/screens/calendar_scrn.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_appbar.dart';
-import 'package:grukul_schedular_app/screens/componant/custom_button.dart';
-import 'package:grukul_schedular_app/screens/details_scrn.dart';
 
-class PasionScrn extends StatefulWidget {
-  static String routName = '/passion_screen';
-  const PasionScrn({Key? key}) : super(key: key);
+import '../../constant.dart';
+
+class ScheduleSrn extends StatefulWidget {
+  static String routName = '/schedule_screen';
+  const ScheduleSrn({Key? key}) : super(key: key);
 
   @override
-  State<PasionScrn> createState() => _PasionScrnState();
+  State<ScheduleSrn> createState() => _ScheduleSrnState();
 }
 
-class _PasionScrnState extends State<PasionScrn> {
-  String? selected = '';
+class _ScheduleSrnState extends State<ScheduleSrn> {
+  String selected = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
         appBar: AppBar(),
-        title: '',
         ontap: () {
           Navigator.pop(context);
         },
+        title: 'Shedule Your Classes',
       ),
-      body:
-       SafeArea(
+      body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
@@ -37,7 +36,7 @@ class _PasionScrnState extends State<PasionScrn> {
               height: 20,
             ),
             Text(
-              'Whats your passion?',
+              'Do you want to...?',
               style: headline1(color: textColor),
             ),
             const Spacer(
@@ -51,8 +50,9 @@ class _PasionScrnState extends State<PasionScrn> {
                   borderRadius: BorderRadius.circular(30),
                   onTap: () {
                     setState(() {
-                      selected = 'bansuri';
+                      selected = 'Schedule';
                       log(selected.toString());
+                      Navigator.pushNamed(context, CalendarScrn.routName);
                     });
                   },
                   child: Container(
@@ -64,7 +64,7 @@ class _PasionScrnState extends State<PasionScrn> {
                               blurRadius: 15,
                               offset: const Offset(0, 0))
                         ],
-                        color: selected == 'bansuri' ? orange : white,
+                        color: selected == 'Schedule' ? orange : white,
                         borderRadius: BorderRadius.circular(50)),
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
@@ -80,10 +80,11 @@ class _PasionScrnState extends State<PasionScrn> {
                         const Spacer(),
                         //text
                         Text(
-                          'Bansuri',
+                          'Schedule',
                           style: bodyText1(
-                              color:
-                                  selected == 'bansuri' ? white : Colors.black),
+                              color: selected == 'Schedule'
+                                  ? white
+                                  : Colors.black),
                         ),
                         const Spacer()
                       ],
@@ -93,8 +94,9 @@ class _PasionScrnState extends State<PasionScrn> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      selected = 'vocal';
+                      selected = 'Re-schedule';
                       log(selected.toString());
+                      Navigator.pushNamed(context, CalendarScrn.routName);
                     });
                   },
                   child: Container(
@@ -106,7 +108,7 @@ class _PasionScrnState extends State<PasionScrn> {
                               blurRadius: 15,
                               offset: const Offset(0, 0))
                         ],
-                        color: selected == 'vocal' ? orange : white,
+                        color: selected == 'Re-schedule' ? orange : white,
                         borderRadius: BorderRadius.circular(50)),
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
@@ -122,10 +124,12 @@ class _PasionScrnState extends State<PasionScrn> {
                         const Spacer(),
                         //text
                         Text(
-                          'Vocal',
+                          'Re-\nschedule',
+                          textAlign: TextAlign.center,
                           style: bodyText1(
-                              color:
-                                  selected == 'vocal' ? white : Colors.black),
+                              color: selected == 'Re-schedule'
+                                  ? white
+                                  : Colors.black),
                         ),
                         const Spacer()
                       ],
@@ -135,8 +139,9 @@ class _PasionScrnState extends State<PasionScrn> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                      selected = 'dhrupadBansuri';
+                      selected = 'Cancel';
                       log(selected.toString());
+                      Navigator.pushNamed(context, CalendarScrn.routName);
                     });
                   },
                   child: Container(
@@ -148,7 +153,7 @@ class _PasionScrnState extends State<PasionScrn> {
                               blurRadius: 15,
                               offset: const Offset(0, 0))
                         ],
-                        color: selected == 'dhrupadBansuri' ? orange : white,
+                        color: selected == 'Cancel' ? orange : white,
                         borderRadius: BorderRadius.circular(50)),
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.center,
@@ -165,11 +170,10 @@ class _PasionScrnState extends State<PasionScrn> {
                         const Spacer(),
                         //text
                         Text(
-                          'Dhrupad\nBansuri',
+                          'Cancel',
                           style: bodyText1(
-                              color: selected == 'dhrupadBansuri'
-                                  ? white
-                                  : Colors.black),
+                              color:
+                                  selected == 'Cancel' ? white : Colors.black),
                         ),
                         const Spacer()
                       ],
@@ -181,18 +185,9 @@ class _PasionScrnState extends State<PasionScrn> {
             const Spacer(
               flex: 2,
             ),
-            CustomButton(
-                ontap: () {
-                  Navigator.pushNamed(context, DetailsScrn.routName);
-                },
-                text: 'Next',
-                textColor: white,
-                btnColor: orange),
-            const Spacer(),
           ],
         ),
       )),
-    
     );
   }
 }

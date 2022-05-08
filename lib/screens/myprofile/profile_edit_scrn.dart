@@ -1,9 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_appbar.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_button.dart';
 import '../../constant.dart';
+import '../componant/custom_list_tile.dart';
 
 class EditProfile extends StatefulWidget {
   static String routName = "/edit_profile";
@@ -30,68 +30,30 @@ class _EditProfileState extends State<EditProfile> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
           child: Column(children: [
-            //
             const SizedBox(
               height: 20,
             ),
-
             ListView(
               shrinkWrap: true,
               children: [
-                listTile(text: 'Name:', data: 'Shruti Pandey'),
-                listTile(text: 'Phone:', data: '9591919100'),
-                listTile(text: 'Email ID:', data: 'student@account.com'),
-                listTile(text: 'Address:', data: 'Mumbai, India'),
+                const CustomListTile(text: 'Name', data: 'Shruti Pandey'),
+                const CustomListTile(text: 'Phone', data: '9591919100'),
+                const CustomListTile(
+                    text: 'Email ID', data: 'student@account.com'),
+                const CustomListTile(text: 'Address:', data: 'Mumbai, India'),
+                // CustomListTile(text: 'Gender:', data: 'Female'),
                 listTilegender(text: 'Gender:', data: 'Female'),
               ],
             ),
             const SizedBox(
               height: 40,
             ),
-
             CustomButton(
                 ontap: () {}, text: 'Save', textColor: white, btnColor: orange),
           ]),
         ),
       ),
     );
-  }
-
-  ///edit all field except gender
-  Widget listTile({required String text, required String data}) {
-    return Column(children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            flex: 1,
-            child: Text(
-              text,
-              style: bodyText1(color: textColor),
-            ),
-          ),
-          // SizedBox(width: 30,),
-          Expanded(
-            flex: 2,
-            child: TextFormField(
-              keyboardType: TextInputType.name,
-              initialValue: data,
-              // maxLength: 10,
-              decoration: const InputDecoration(
-                  border: UnderlineInputBorder(borderSide: BorderSide.none)),
-              style: bodyText1Bold(color: textColor),
-            ),
-          ),
-        ],
-      ),
-      // const SizedBox(
-      //   height: 10,
-      // ),
-      const Divider(
-        color: orange,
-        thickness: 1,
-      ),
-    ]);
   }
 
   ///edit select gender
@@ -156,4 +118,5 @@ class _EditProfileState extends State<EditProfile> {
       ),
     ]);
   }
+
 }
