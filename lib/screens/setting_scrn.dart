@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_appbar.dart';
+import 'package:grukul_schedular_app/screens/componant/custom_button.dart';
 import '../constant.dart';
 
 ///Setting Screen
@@ -39,7 +40,7 @@ class _SettingScrnState extends State<SettingScrn> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Text(
                       'Genre',
                       style: bodyText1(color: textColor),
@@ -98,7 +99,7 @@ class _SettingScrnState extends State<SettingScrn> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: Text(
                       'Mode of Class',
                       style: bodyText1(color: textColor),
@@ -135,7 +136,7 @@ class _SettingScrnState extends State<SettingScrn> {
                         }).toList(),
                         onChanged: (_value) {
                           setState(() {
-                            genreTypeValue = _value;
+                            modeOfClassTypeValue = _value;
                           });
                           log('$_value');
                         },
@@ -152,65 +153,76 @@ class _SettingScrnState extends State<SettingScrn> {
                 thickness: 1,
               ),
             ]),
-            // Column(children: [
-            //   Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Expanded(
-            //         flex: 1,
-            //         child: Text(
-            //           'Class Type',
-            //           style: bodyText1(color: textColor),
-            //         ),
-            //       ),
-            //       // SizedBox(width: 30,),
-            //       Expanded(
-            //         flex: 2,
-            //         child: SizedBox(
-            //           child: DropdownButton(
-            //             // menuMaxHeight: 300,
-            //             //itemHeight: 300.0,
-            //             hint: const Text(
-            //               "select",
-            //               style: TextStyle(fontSize: 17),
-            //               textAlign: TextAlign.center,
-            //             ),
-            //             underline: const SizedBox(),
-            //             isExpanded: true,
-            //             iconEnabledColor: Colors.black,
-            //             icon: const Icon(Icons.arrow_drop_down),
-            //             style: const TextStyle(color: Colors.black),
-            //             focusColor: Colors.white,
-            //             value: classTypeValue,
-            //             items: classType
-            //                 .map<DropdownMenuItem<String>>((String valueItem) {
-            //               return DropdownMenuItem<String>(
-            //                 value: valueItem,
-            //                 child: Text(
-            //                   valueItem,
-            //                   style: bodyText1Bold(color: textColor),
-            //                 ),
-            //               );
-            //             }).toList(),
-            //             onChanged: (_value) {
-            //               setState(() {
-            //                 genreTypeValue = _value;
-            //               });
-            //               log('$_value');
-            //             },
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            //   // const SizedBox(
-            //   //   height: 10,
-            //   // ),
-            //   const Divider(
-            //     color: orange,
-            //     thickness: 1,
-            //   ),
-            // ]),
+            Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      'Class Type',
+                      style: bodyText1(color: textColor),
+                    ),
+                  ),
+                  // SizedBox(width: 30,),
+                  Expanded(
+                    flex: 2,
+                    child: SizedBox(
+                      child: DropdownButton(
+                        // menuMaxHeight: 300,
+                        //itemHeight: 300.0,
+                        hint: const Text(
+                          "select",
+                          style: TextStyle(fontSize: 17),
+                          textAlign: TextAlign.center,
+                        ),
+                        underline: const SizedBox(),
+                        isExpanded: true,
+                        iconEnabledColor: Colors.black,
+                        icon: const Icon(Icons.arrow_drop_down),
+                        style: const TextStyle(color: Colors.black),
+                        focusColor: Colors.white,
+                        value: classTypeValue,
+                        items: classType
+                            .map<DropdownMenuItem<String>>((String valueItem) {
+                          return DropdownMenuItem<String>(
+                            value: valueItem,
+                            child: Text(
+                              valueItem,
+                              style: bodyText1Bold(color: textColor),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (_value) {
+                          setState(() {
+                            classTypeValue = _value;
+                          });
+                          log('$_value');
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              const Divider(
+                color: orange,
+                thickness: 1,
+              ),
+            ]),
+            const Spacer(
+              flex: 3,
+            ),
+            CustomButton(
+                ontap: () {
+                  //save function
+                },
+                text: 'Save',
+                textColor: white,
+                btnColor: orange),
+            const Spacer()
           ],
         ),
       ),
