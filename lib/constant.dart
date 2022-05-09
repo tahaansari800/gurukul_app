@@ -5,6 +5,10 @@ const primary = Color.fromARGB(255, 121, 27, 27);
 const orange = Color(0XFFFF7A3E);
 const white = Colors.white;
 const textColor = Color(0XFF455A64);
+const selectedDate = Color(0XFFFFDC3E);
+const avialbaleDate = Color(0XFFFF7A3E);
+const blockDate = Color(0XFFC4C4C4);
+
 
 ///Media Query screen height
 double scHeight(context) {

@@ -28,7 +28,7 @@ class _SettingScrnState extends State<SettingScrn> {
         ontap: () {
           Navigator.pop(context);
         },
-        title: 'Settings',
+        title: 'Settings  ',
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
