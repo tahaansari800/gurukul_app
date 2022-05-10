@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,20 +16,34 @@ class ProfileScrn extends StatefulWidget {
 
 class _ProfileScrnState extends State<ProfileScrn> {
   final ImagePicker picker = ImagePicker();
-  File? _selectedimage;
+  List? selectedimage;
+
+  ///image file here only one image will exist so index always 0
   List<XFile> imageList = [];
   // List<File> selectedImage = [];
+  dynamic _pickImageError;
+
   ///open camera
   openCamera(ImageSource source) async {
-    final selected = await picker.pickImage(source: source);
-    if (selected!.path.isNotEmpty) {
-      imageList.add(selected);
-      // selectedImage = imageList.map((e) => File(e.path)).toList();
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please select an image')));
+    try {
+      final selected = await picker.pickImage(source: source);
+      if (selected!.path.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Please select an image')));
+        // selectedImage = imageList.map((e) => File(e.path)).toList();
+      } else if (selected.path.isNotEmpty) {
+        imageList.add(selected);
+      } else {
+        log('something went wrong');
+      }
+      setState(() {
+        // imageList =selected as List<XFile>;
+      });
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
     }
-    setState(() {});
   }
 
   ///show modal sheet to open camera or gallery
@@ -119,15 +134,20 @@ class _ProfileScrnState extends State<ProfileScrn> {
                 clipBehavior: Clip.none,
                 children: [
                   //profile photo
-                  const CircleAvatar(
+                  CircleAvatar(
                     backgroundColor: Colors.black,
                     radius: 40,
-                    // child: Image.file(
-                    //   File(
-                    //     imageList.toString(),
-                    //   ),
-                    //   fit: BoxFit.cover,
-                    // ),
+                    child: imageList.isNotEmpty
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(40),
+                            child: Image.file(
+                              File(imageList[0].path),
+                              fit: BoxFit.cover,
+                              height: 80,
+                              width: 80,
+                            ),
+                          )
+                        : null,
                   ),
                   Positioned(
                       bottom: -3,
@@ -138,7 +158,10 @@ class _ProfileScrnState extends State<ProfileScrn> {
                           bottomsheet(context, () {
                             Navigator.pop(context);
                             openCamera(ImageSource.camera);
-                          }, () {});
+                          }, () {
+                            Navigator.pop(context);
+                            openCamera(ImageSource.gallery);
+                          });
                         },
                         child: SizedBox(
                             child: CircleAvatar(

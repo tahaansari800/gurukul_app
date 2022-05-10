@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:grukul_schedular_app/constant.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_appbar.dart';
@@ -16,7 +15,11 @@ class MyOrders extends StatefulWidget {
 }
 
 class _MyOrdersState extends State<MyOrders> {
+  List<String> deliverylList = ['Address', 'Gurukul'];
+  List<String> paymentList = ['Online', 'Cash'];
   Object? gender;
+  Object? delivery;
+  Object? payment;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,8 +161,8 @@ class _MyOrdersState extends State<MyOrders> {
                         icon: const Icon(Icons.arrow_drop_down),
                         style: const TextStyle(color: Colors.black),
                         focusColor: Colors.white,
-                        value: gender,
-                        items: genderList
+                        value: delivery,
+                        items: deliverylList
                             .map<DropdownMenuItem<String>>((String valueItem) {
                           return DropdownMenuItem<String>(
                             value: valueItem,
@@ -171,7 +174,7 @@ class _MyOrdersState extends State<MyOrders> {
                         }).toList(),
                         onChanged: (_value) {
                           setState(() {
-                            gender = _value;
+                            delivery = _value;
                           });
                           log('$_value');
                         },
@@ -212,8 +215,8 @@ class _MyOrdersState extends State<MyOrders> {
                         icon: const Icon(Icons.arrow_drop_down),
                         style: const TextStyle(color: Colors.black),
                         focusColor: Colors.white,
-                        value: gender,
-                        items: genderList
+                        value: payment,
+                        items: paymentList
                             .map<DropdownMenuItem<String>>((String valueItem) {
                           return DropdownMenuItem<String>(
                             value: valueItem,
@@ -225,7 +228,7 @@ class _MyOrdersState extends State<MyOrders> {
                         }).toList(),
                         onChanged: (_value) {
                           setState(() {
-                            gender = _value;
+                            payment = _value;
                           });
                           log('$_value');
                         },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grukul_schedular_app/constant.dart';
-import 'package:grukul_schedular_app/screens/componant/error_scrn.dart';
+import 'package:grukul_schedular_app/screens/calendar_scrn.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
 import 'package:grukul_schedular_app/screens/myprofile/profile_scrn.dart';
 import 'package:grukul_schedular_app/screens/notice_board_scrn.dart';
@@ -39,7 +39,9 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
         width: 45,
         child: FloatingActionButton(
           backgroundColor: floatingBtnColor == false ? orange : white,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, CalendarScrn.routName);
+          },
           child: Icon(
             Icons.add,
             color: floatingBtnColor == false ? white : orange,
