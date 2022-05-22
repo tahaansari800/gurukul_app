@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:grukul_schedular_app/screens/bansuri_scrn.dart';
 import 'package:grukul_schedular_app/screens/calendar_scrn.dart';
 import 'package:grukul_schedular_app/screens/classes_mode.dart';
+import 'package:grukul_schedular_app/screens/custompainter_example.dart';
 import 'package:grukul_schedular_app/screens/details_scrn.dart';
 import 'package:grukul_schedular_app/screens/flutes_scrn.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
@@ -48,4 +49,5 @@ final Map<String, WidgetBuilder> routes = {
   ScheduleClassModeScrn.routName: (context) => const ScheduleClassModeScrn(),
   ScheduleSrn.routName: (context) => const ScheduleSrn(),
   CalendarScrn.routName: (context) => const CalendarScrn(),
+  CustomPExample.routName: (context) => const CustomPExample(),
 };

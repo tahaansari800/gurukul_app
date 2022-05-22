@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_button.dart';
 import 'package:grukul_schedular_app/screens/otp_scrn.dart';
+import 'package:grukul_schedular_app/screens/singup_scrn.dart';
 
 import '../constant.dart';
 
@@ -107,7 +108,9 @@ class SignInScrn extends StatelessWidget {
                 )),
                 WidgetSpan(
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, SignUpScrn.routName);
+                    },
                     child: const Text(
                       'Register',
                       style: TextStyle(color: orange),

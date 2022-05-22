@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grukul_schedular_app/constant.dart';
 import 'package:grukul_schedular_app/screens/calendar_scrn.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
-import 'package:grukul_schedular_app/screens/myprofile/profile_scrn.dart';
 import 'package:grukul_schedular_app/screens/notice_board_scrn.dart';
 import 'package:grukul_schedular_app/screens/your_schedule_scrn.dart';
+import '../myprofile/profile_scrn.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
   static String routName = '/custom_navigation';
@@ -30,6 +30,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
     const NoticeBoardScrn(),
     // const ErrorScrn(),
     const ProfileScrn(),
+    const CustomPaint()
   ];
   @override
   Widget build(BuildContext context) {
@@ -68,18 +69,19 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
               },
               selectIcon: 'assets/icons/fi-rr-home.svg',
               unselectIcon: 'assets/icons/fi-sr-home.svg',
+              text: 'Home',
             ),
             IconBottomBar(
               selected: _selectedIndex == 1,
               onPressed: () {
                 floatingBtnColor = true;
-
                 setState(() {
                   _selectedIndex = 1;
                 });
               },
               selectIcon: 'assets/icons/fi-rr-music-alt.svg',
               unselectIcon: 'assets/icons/fi-sr-music-alt.svg',
+              text: 'Music',
             ),
             IconBottomBar(
               selected: _selectedIndex == 2,
@@ -91,6 +93,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
               },
               selectIcon: 'assets/icons/fi-rr-dart.svg',
               unselectIcon: 'assets/icons/fi-sr-dart.svg',
+              text: 'Notice',
             ),
             IconBottomBar(
               selected: _selectedIndex == 3,
@@ -103,6 +106,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
               },
               selectIcon: 'assets/icons/fi-rr-user.svg',
               unselectIcon: 'assets/icons/fi-sr-user.svg',
+              text: 'Profile',
             ),
           ]),
         ),
@@ -115,6 +119,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
 class IconBottomBar extends StatelessWidget {
   final bool selected;
   final String selectIcon;
+  final String text;
   final String unselectIcon;
   final Function() onPressed;
 
@@ -123,23 +128,43 @@ class IconBottomBar extends StatelessWidget {
       required this.selected,
       required this.onPressed,
       required this.selectIcon,
-      required this.unselectIcon})
+      required this.unselectIcon,
+      required this.text})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: onPressed,
-        icon: selected
-            ? SvgPicture.asset(
-                unselectIcon,
-                height: 24,
-                width: 24,
-              )
-            : SvgPicture.asset(
-                selectIcon,
-                height: 24,
-                width: 24,
-              ));
+    return SizedBox(
+      child: Column(
+        children: [
+          Expanded(
+            flex: 5,
+            child: IconButton(
+              onPressed: onPressed,
+              icon: selected
+                  ? SvgPicture.asset(
+                      unselectIcon,
+                      height: 24,
+                      width: 24,
+                    )
+                  : SvgPicture.asset(
+                      selectIcon,
+                      height: 24,
+                      width: 24,
+                    ),
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              text,
+              style: selected
+                  ? bodyText2(color: orange)
+                  : bodyText3(color: textColor),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

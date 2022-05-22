@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grukul_schedular_app/constant.dart';
+import 'package:grukul_schedular_app/modal/notice_boar-modal.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_appbar.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
 
@@ -24,14 +25,12 @@ class NoticeBoardScrn extends StatelessWidget {
           child: Column(children: [
             ListView.builder(
               primary: false,
-              itemCount: 5,
+              itemCount: noticeBoardList.length,
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return const NoticeBoardCard(
-                  text:
-                      'Today’s class at 03:00PM has been cancelled and will be held on Saturday at 03:00PM.',
-                );
+                return NoticeBoardCard(
+                    noticeBoardModal: noticeBoardList[index]);
               },
             ),
           ]),
@@ -44,10 +43,10 @@ class NoticeBoardScrn extends StatelessWidget {
 class NoticeBoardCard extends StatelessWidget {
   const NoticeBoardCard({
     Key? key,
-    required this.text,
+    required this.noticeBoardModal,
   }) : super(key: key);
-  final String text;
 
+  final NoticeBoardModal noticeBoardModal;
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -60,7 +59,9 @@ class NoticeBoardCard extends StatelessWidget {
         // height: scHeight(context) / 6,
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: orange),
+            borderRadius: BorderRadius.circular(10),
+            color:
+                noticeBoardModal.isUnread == true ? orange.withOpacity(0.8) : notificationRed),
         child: Column(
           // mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,14 +69,16 @@ class NoticeBoardCard extends StatelessWidget {
             SizedBox(
                 child: SvgPicture.asset(
               'assets/icons/fi-rr-dart.svg',
-              color: white,
+              color: noticeBoardModal.isUnread == false ? Colors.black : white,
             )),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.only(left: 40.0),
               child: Text(
-                text,
-                style: bodyText1(color: white),
+                noticeBoardModal.text,
+                style: bodyText1(
+                    color:
+                        noticeBoardModal.isUnread == false ? textColor : white),
               ),
             ),
             const SizedBox(

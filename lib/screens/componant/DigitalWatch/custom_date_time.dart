@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -17,9 +16,11 @@ class _DateTimeDigitalWatchState extends State<DateTimeDigitalWatch> {
   @override
   void initState() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        formattedTime = DateFormat('h : mm').format(DateTime.now());
-      });
+      if (mounted) {
+        setState(() {
+          formattedTime = DateFormat('h : mm').format(DateTime.now());
+        });
+      }
     });
     super.initState();
   }

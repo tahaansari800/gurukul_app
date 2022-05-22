@@ -8,6 +8,7 @@ const textColor = Color(0XFF455A64);
 const selectedDate = Color(0XFFFFDC3E);
 const avialbaleDate = Color(0XFFFF7A3E);
 const blockDate = Color(0XFFC4C4C4);
+const notificationRed = Color(0XFFF0F0F0);
 
 
 ///Media Query screen height

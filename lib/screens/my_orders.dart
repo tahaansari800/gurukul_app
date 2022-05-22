@@ -9,7 +9,6 @@ import 'package:grukul_schedular_app/screens/order_placed_scrn.dart';
 class MyOrders extends StatefulWidget {
   static String routName = '/my_orders';
   const MyOrders({Key? key}) : super(key: key);
-
   @override
   State<MyOrders> createState() => _MyOrdersState();
 }
@@ -17,9 +16,24 @@ class MyOrders extends StatefulWidget {
 class _MyOrdersState extends State<MyOrders> {
   List<String> deliverylList = ['Address', 'Gurukul'];
   List<String> paymentList = ['Online', 'Cash'];
+  List<String> eScalSizeList = [
+    'A',
+    'A#',
+    'B',
+    'C',
+    'C#',
+    'D',
+    'D#',
+    'E',
+    'F',
+    'F#',
+    'G',
+    'G#'
+  ];
   Object? gender;
   Object? delivery;
   Object? payment;
+  Object? eScaleSize;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +84,6 @@ class _MyOrdersState extends State<MyOrders> {
                           const SizedBox(
                             height: 20,
                           ),
-
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
                             height: scHeight(context) * 0.05,
@@ -79,8 +92,8 @@ class _MyOrdersState extends State<MyOrders> {
                                 color: white,
                                 borderRadius: BorderRadius.circular(8)),
                             child: DropdownButton(
-                              // menuMaxHeight: 300,
-                              //itemHeight: 300.0,
+                              menuMaxHeight: 200,
+                              // itemHeight: 100.0,
                               hint: const Text(
                                 "Select Size",
                                 style: TextStyle(fontSize: 17),
@@ -92,9 +105,10 @@ class _MyOrdersState extends State<MyOrders> {
                               icon: const Icon(Icons.arrow_drop_down),
                               style: const TextStyle(color: Colors.black),
                               focusColor: Colors.white,
-                              value: gender,
-                              items: genderList.map<DropdownMenuItem<String>>(
-                                  (String valueItem) {
+                              value: eScaleSize,
+                              items: eScalSizeList
+                                  .map<DropdownMenuItem<String>>(
+                                      (String valueItem) {
                                 return DropdownMenuItem<String>(
                                   value: valueItem,
                                   child: Text(
@@ -105,13 +119,12 @@ class _MyOrdersState extends State<MyOrders> {
                               }).toList(),
                               onChanged: (_value) {
                                 setState(() {
-                                  gender = _value;
+                                  eScaleSize = _value;
                                 });
                                 ('$_value');
                               },
                             ),
                           ),
-
                           const Spacer(),
                           Align(
                               alignment: Alignment.centerRight,
@@ -147,6 +160,7 @@ class _MyOrdersState extends State<MyOrders> {
                   Expanded(
                     flex: 2,
                     child: SizedBox(
+                      
                       child: DropdownButton(
                         // menuMaxHeight: 300,
                         //itemHeight: 300.0,
