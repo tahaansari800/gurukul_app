@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grukul_schedular_app/modal/schedule_card_modal.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_appbar.dart';
 import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
 import 'componant/your_schedul_card.dart';
@@ -25,15 +26,10 @@ class YourScheduleScrn extends StatelessWidget {
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 4,
+                itemCount: scheduleCardList.length,
                 itemBuilder: (context, index) {
-                  return const YourScheduleCard(
-                    date: '15/04/2022',
-                    statusBtn: 'Yet to start',
-                    statusText: 'Class starts in 10 minutes',
-                    time: '03:00PM - 04:00PM',
-                    title: 'Dhrupad Bansuri Riyaz',
-                  );
+                  return YourScheduleCard(
+                      scheduleCardModal: scheduleCardList[index]);
                 },
               )
             ],

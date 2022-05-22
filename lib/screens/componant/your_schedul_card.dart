@@ -1,35 +1,20 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:grukul_schedular_app/screens/componant/custom_navigation.dart';
+import 'package:grukul_schedular_app/modal/schedule_card_modal.dart';
 import 'package:grukul_schedular_app/screens/scheduleClasses/schedule_class_mode_scrn.dart';
 
 import '../../constant.dart';
 import 'custom_button.dart';
 
 ///custom schdule card
-class YourScheduleCard extends StatefulWidget {
-  const YourScheduleCard({
-    Key? key,
-    required this.title,
-    required this.time,
-    required this.date,
-    required this.statusText,
-    required this.statusBtn,
-  }) : super(key: key);
+class YourScheduleCard extends StatelessWidget {
+  static String routName = '/your_schedule_card';
+  YourScheduleCard({Key? key, required this.scheduleCardModal})
+      : super(key: key);
 
-  final String title;
-  final String time;
-  final String date;
-  final String statusText;
-  final String statusBtn;
+  final ScheduleCardModal scheduleCardModal;
 
-  @override
-  State<YourScheduleCard> createState() => _YourScheduleCardState();
-}
-
-class _YourScheduleCardState extends State<YourScheduleCard> {
-  Object? isClass;
   final List<String> isClassList = ['Reshedule Class', 'Cancel Class'];
   @override
   Widget build(BuildContext context) {
@@ -40,7 +25,7 @@ class _YourScheduleCardState extends State<YourScheduleCard> {
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: orange,
+        color:scheduleCardModal.isUnread? orange:notificationRed,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,14 +36,14 @@ class _YourScheduleCardState extends State<YourScheduleCard> {
             children: [
               //title text
               Text(
-                widget.title,
-                style: headline2(color: white),
+                scheduleCardModal.title,
+                style: headline2(color:scheduleCardModal.isUnread?white:textColor),
               ),
               //popup menu
               PopupMenuButton(
-                icon: const Icon(
+                icon:  Icon(
                   Icons.more_vert,
-                  color: white,
+                  color: scheduleCardModal.isUnread?white:textColor,
                 ),
                 onSelected: (value) {
                   if (value == 0) {
@@ -88,14 +73,14 @@ class _YourScheduleCardState extends State<YourScheduleCard> {
 
           //times
           Text(
-            widget.time,
-            style: bodyText1(color: white),
+            scheduleCardModal.time,
+            style: bodyText1(color: scheduleCardModal.isUnread?white:textColor),
           ),
 
           //dates
           Text(
-            widget.date,
-            style: bodyText2(color: white),
+            scheduleCardModal.date,
+            style: bodyText2(color: scheduleCardModal.isUnread?white:textColor),
           ),
 
           // status in text and button
@@ -104,19 +89,18 @@ class _YourScheduleCardState extends State<YourScheduleCard> {
               SizedBox(
                 //status in text
                 child: Text(
-                  widget.statusText,
-                  style: bodyText1(color: white),
+                  scheduleCardModal.timeStart,
+                  style: bodyText1(color: scheduleCardModal.isUnread?white:textColor),
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              const Spacer(),
               //status in button
-              Expanded(
+              SizedBox(
+                width: scWidth(context) / 3.15,
                 child: CustomButton(
                     ontap: () {},
-                    text: widget.statusBtn,
-                    textColor: orange,
+                    text: scheduleCardModal.btnStatus,
+                    textColor: scheduleCardModal.isUnread?orange:textColor,
                     btnColor: white),
               ),
             ],
