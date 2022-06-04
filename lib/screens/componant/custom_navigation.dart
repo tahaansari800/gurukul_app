@@ -5,6 +5,7 @@ import 'package:grukul_schedular_app/screens/calendar_scrn.dart';
 import 'package:grukul_schedular_app/screens/home_scrn.dart';
 import 'package:grukul_schedular_app/screens/notice_board_scrn.dart';
 import 'package:grukul_schedular_app/screens/your_schedule_scrn.dart';
+import 'package:lottie/lottie.dart';
 import '../myprofile/profile_scrn.dart';
 
 class CustomBottomNavigation extends StatefulWidget {
@@ -35,19 +36,14 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: SizedBox(
-        height: 45,
-        width: 45,
-        child: FloatingActionButton(
-          backgroundColor: floatingBtnColor == false ? orange : white,
-          onPressed: () {
-            Navigator.pushNamed(context, CalendarScrn.routName);
-          },
-          child: Icon(
-            Icons.add,
-            color: floatingBtnColor == false ? white : orange,
-            size: 30,
-          ),
+      floatingActionButton: InkWell(
+        onTap: () {
+          Navigator.pushNamed(context, CalendarScrn.routName);
+        },
+        child: SizedBox(
+          height: 60,
+          width: 50,
+          child: Lottie.asset('assets/icons/lf30_editor_1subxdkr.json'),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

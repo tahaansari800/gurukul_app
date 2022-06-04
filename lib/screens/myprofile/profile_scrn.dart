@@ -176,6 +176,7 @@ class _ProfileScrnState extends State<ProfileScrn> {
                 ],
               ),
             ),
+            
             const Spacer(),
             ListView(
               shrinkWrap: true,

@@ -49,7 +49,6 @@ class HomeScrn extends StatelessWidget {
               height: 20,
             ),
             // your schedule container
-
             Container(
               height: scHeight(context) * 0.53,
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
@@ -90,10 +89,17 @@ class HomeScrn extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           //text
-                          Text(
-                            'Book a session with your Guru now to test your skills.',
-                            style: bodyText1(color: white),
-                          ),
+
+                          Text.rich(TextSpan(
+                              style: bodyText1(color: white),
+                              children: [
+                                const TextSpan(text: 'Here,it\'s'),
+                                TextSpan(
+                                    style: bodyText1Bold(color: white),
+                                    text: ' Your practice sessions'),
+                                const TextSpan(
+                                    text: ' and + sign is session with Guru')
+                              ])),
                           const SizedBox(
                             height: 15,
                           ),

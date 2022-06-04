@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
             iconTheme: IconThemeData(color: Colors.black),
             toolbarHeight: 38,
+            
             systemOverlayStyle: SystemUiOverlayStyle(
               statusBarIconBrightness: Brightness.dark,
               statusBarColor: Colors.white,
@@ -31,10 +32,11 @@ class MyApp extends StatelessWidget {
                 color: Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w800)),
+     
       ),
       routes: routes,
-      home: const CustomBottomNavigation(),
-      // home: const GetStarted()
+      // home: const CustomBottomNavigation(),
+      home: const GetStarted()
       // home: const PasionScrn(),
     );
   }

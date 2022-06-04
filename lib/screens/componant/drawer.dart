@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grukul_schedular_app/screens/flutes_scrn.dart';
 import 'package:grukul_schedular_app/screens/my_orders.dart';
-import 'package:grukul_schedular_app/screens/order_placed_scrn.dart';
 import 'package:grukul_schedular_app/screens/payment_scrn.dart';
 import 'package:grukul_schedular_app/screens/reminder.dart';
 import 'package:grukul_schedular_app/screens/setting_scrn.dart';
@@ -40,6 +39,7 @@ class CustomDrawer extends StatelessWidget {
                               color: Colors.white,
                             )),
                       ),
+                      
                       CircleAvatar(
                         backgroundColor: Colors.black,
                         radius: 45,
@@ -69,34 +69,7 @@ class CustomDrawer extends StatelessWidget {
               },
               leading: SvgPicture.asset('assets/images/fi-rr-money.svg'),
               title: Text(
-                'My Payments',
-                style: bodyText1(color: textColor),
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, MyOrders.routName);
-              },
-              shape: const RoundedRectangleBorder(
-                  side: BorderSide(width: 0.5, color: orange)),
-              leading: Stack(clipBehavior: Clip.none, children: [
-                SvgPicture.asset('assets/images/fi-rr-shopping-cart.svg'),
-                const Positioned(
-                  left: 18,
-                  top: -3,
-                  child: CircleAvatar(
-                    backgroundColor: white,
-                    radius: 7,
-                    child: CircleAvatar(
-                      backgroundColor: orange,
-                      radius: 5,
-                    ),
-                  ),
-                ),
-              ]),
-              title: Text(
-                'My Orders',
+                'Guru Dakshina',
                 style: bodyText1(color: textColor),
               ),
             ),
@@ -105,12 +78,13 @@ class CustomDrawer extends StatelessWidget {
                   side: BorderSide(width: 0.5, color: orange)),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, SettingScrn.routName);
+                Navigator.pushNamed(context, FlutesScrn.routName);
               },
               leading: SizedBox(
-                  child: SvgPicture.asset('assets/images/fi-rr-settings.svg')),
+                  child:
+                      Image.asset('assets/images/fi-rr-thumbtack-flute.png')),
               title: Text(
-                'Settings',
+                'Purchase Your Flute',
                 style: bodyText1(color: textColor),
               ),
             ),
@@ -142,17 +116,43 @@ class CustomDrawer extends StatelessWidget {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, MyOrders.routName);
+              },
+              shape: const RoundedRectangleBorder(
+                  side: BorderSide(width: 0.5, color: orange)),
+              leading: Stack(clipBehavior: Clip.none, children: [
+                SvgPicture.asset('assets/images/fi-rr-shopping-cart.svg'),
+                const Positioned(
+                  left: 18,
+                  top: -3,
+                  child: CircleAvatar(
+                    backgroundColor: white,
+                    radius: 7,
+                    child: CircleAvatar(
+                      backgroundColor: orange,
+                      radius: 5,
+                    ),
+                  ),
+                ),
+              ]),
+              title: Text(
+                'Downloads',
+                style: bodyText1(color: textColor),
+              ),
+            ),
+            ListTile(
               shape: const RoundedRectangleBorder(
                   side: BorderSide(width: 0.5, color: orange)),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, FlutesScrn.routName);
+                Navigator.pushNamed(context, SettingScrn.routName);
               },
               leading: SizedBox(
-                  child:
-                      Image.asset('assets/images/fi-rr-thumbtack-flute.png')),
+                  child: SvgPicture.asset('assets/images/fi-rr-settings.svg')),
               title: Text(
-                'Flutes',
+                'Settings',
                 style: bodyText1(color: textColor),
               ),
             ),

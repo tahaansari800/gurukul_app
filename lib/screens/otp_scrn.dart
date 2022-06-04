@@ -62,7 +62,8 @@ class _OtpScrnState extends State<OtpScrn> {
           Navigator.pop(context);
         },
       ),
-      body: Padding(
+      body: 
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,6 +164,7 @@ class _OtpScrnState extends State<OtpScrn> {
                 ),
               ],
             ),
+            
             const SizedBox(
               height: 50,
             ),
@@ -207,6 +209,7 @@ class _OtpScrnState extends State<OtpScrn> {
           ],
         ),
       ),
+   
     );
   }
 }
